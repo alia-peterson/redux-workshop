@@ -1,18 +1,22 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { addToDo } from '../actions'
+import { connect } from 'react-redux'
 
 class AddTodoForm extends Component {
   constructor(props) {
-    super(props);
-    this.state = { todo: '' };
+    super(props)
+    this.state = { todo: '' }
   }
 
   handleChange = (e) => {
-    this.setState({ todo: e.target.value });
+    this.setState({ todo: e.target.value })
   }
 
   submitForm = (e) => {
     e.preventDefault()
-    this.setState({ todo: '' });
+    this.props.addToDo(this.state.todo)
+    this.setState({ todo: '' })
   }
 
   render() {
@@ -30,4 +34,12 @@ class AddTodoForm extends Component {
   }
 }
 
-export default AddTodoForm;
+AddTodoForm.propTypes = {
+  addToDo: PropTypes.func,
+}
+
+const mapDispatchToProps = dispatch => ({
+  addToDo: text => dispatch( addToDo(text) )
+})
+
+export default connect(null, mapDispatchToProps)(AddTodoForm)
