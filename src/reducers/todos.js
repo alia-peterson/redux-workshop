@@ -1,6 +1,8 @@
 const initialState = {
   todos: [],
-  completed: []
+  active: [],
+  completed: [],
+  display: 'all'
 }
 
 export const todos = (state = initialState, action) => {
