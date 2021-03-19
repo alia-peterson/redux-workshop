@@ -5,7 +5,12 @@ import { toggleTodo } from '../actions'
 
 const ToDo = ({ id, text, completed, toggleTodo }) => {
   return (
-    <li>{text}</li>
+    <li
+      onClick={() => toggleTodo(id)}
+      className={completed ? 'completed' : 'not-completed'}
+      >
+      {text}
+    </li>
   )
 }
 
